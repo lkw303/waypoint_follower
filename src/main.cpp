@@ -11,7 +11,7 @@ int main(int argc, char** argv)
 
   if (!waypoint_follower)
   {
-    ROS_ERROR("free_fleet_client_ros1: unable to initialize.");
+    ROS_ERROR("waypoint_follower_node: unable to initialize.");
     return 1;
   }
 
