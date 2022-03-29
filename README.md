@@ -15,7 +15,7 @@ catkin_make
 ## Running
 
 ### Checks
-In order to run the node there are a series of things to have the node run properly:
+In order to run the node there are a series of things to do in order to have the node run properly:
 1. make sure the active move base server's name corresponds with `move_base_server_name` in the launch file
 2. ensure the the topic of `geometry_msgs::PoseStamped` publish corresponds with `waypoints_topic` in the launch file.
 3. ensure that the move base action server for the robot of interest is up and running.
@@ -44,4 +44,11 @@ And now we are good to go. Simply using the Rviz 2D Nav Goal tool to set the way
 The video below shows an example deployment of the `waypoint_follower` node turtlebot3 in the turtlebot3 world in gazebo.
 ![example deployment](./media/example_deployment.gif)
 
+## Tuning
+In this case since we are using the capabilites of the move base action, overshooting and smoothness of navigation is dependant on the global and local planners. In the example deployment we are using the DWAPlanner. The local planner can take in a number of parameters such as the maximum linear and angular velocities, acceleration limits and controller frequency.
 
+## Pros
+This solution is modular as it use the move base action and thus can be implemented on any robot that has a move base server set up.
+
+## Draw Backs
+This implementation would require the robot to slow down and stop at every waypoint. A way to make this smoother perhaps is to have a distance parameter, whereby the next goal will be sent when the robot is within this distance of the current goal.
